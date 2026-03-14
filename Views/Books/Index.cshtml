@@ -1,0 +1,110 @@
+﻿@model List<WebApplication1.Models.Book>
+
+@{
+    ViewBag.Title = "Library Books";
+}
+
+<style>
+
+    .page {
+        max-width: 1100px;
+        margin: auto;
+        padding: 30px;
+    }
+
+    .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+        gap: 25px;
+    }
+
+    .book-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: 0.2s;
+    }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .book-image {
+        height: 180px;
+        background: linear-gradient(135deg,#4facfe,#00f2fe);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+    }
+
+    .book-body {
+        padding: 15px;
+    }
+
+    .book-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .book-author {
+        color: gray;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        background: #4facfe;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="page">
+
+    <h2>Library Books</h2>
+
+    <div class="book-grid">
+
+        @foreach (var book in Model)
+        {
+            <div class="book-card">
+
+                <div class="book-image">
+                    Book Cover
+                </div>
+
+                <div class="book-body">
+
+                    <div class="book-title">
+                        @book.Title
+                    </div>
+
+                    <div class="book-author">
+                        Author: @book.Author
+                    </div>
+
+                    <p>
+                        Total Books: @book.Quantity
+                    </p>
+
+                    @Html.ActionLink(
+                    "View Details",
+                    "Details",
+                    "Books",
+                    new { id = book.Id },
+                    new { @class = "btn" }
+                    )
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
