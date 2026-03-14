@@ -44,14 +44,14 @@
             // học sinh 
             context.Students.AddOrUpdate(
                 s => s.Id,
-                new Student { Id = 1, Name = "Trung", Email = "trung@gmail.com", RoleId = 1 },
-                new Student { Id = 2, Name = "An", Email = "an@gmail.com", RoleId = 2 },
-                new Student { Id = 3, Name = "Binh", Email = "binh@gmail.com", RoleId = 2 },
-                new Student { Id = 4, Name = "Cuong", Email = "cuong@gmail.com", RoleId = 2 },
-                new Student { Id = 5, Name = "Dung", Email = "dung@gmail.com", RoleId = 2 },
-                new Student { Id = 6, Name = "Huy", Email = "huy@gmail.com", RoleId = 2 },
-                new Student { Id = 7, Name = "Long", Email = "long@gmail.com", RoleId = 2 },
-                new Student { Id = 8, Name = "Minh", Email = "minh@gmail.com", RoleId = 2 }
+                new Student { Id = 1, Name = "Trung", Email = "trung@gmail.com",Password="abc123!@#" , RoleId = 1 },
+                new Student { Id = 2, Name = "An", Email = "an@gmail.com", Password = "abc123!@#", RoleId = 2 },
+                new Student { Id = 3, Name = "Binh", Email = "binh@gmail.com", Password = "abc123!@#", RoleId = 2 },
+                new Student { Id = 4, Name = "Cuong", Email = "cuong@gmail.com", Password = "abc123!@#", RoleId = 2 },
+                new Student { Id = 5, Name = "Dung", Email = "dung@gmail.com", Password = "abc123!@#", RoleId = 2 },
+                new Student { Id = 6, Name = "Huy", Email = "huy@gmail.com", Password = "abc123!@#", RoleId = 2 },
+                new Student { Id = 7, Name = "Long", Email = "long@gmail.com", Password = "abc123!@#", RoleId = 2 },
+                new Student { Id = 8, Name = "Minh", Email = "minh@gmail.com", Password = "abc123!@#", RoleId = 2 }
             );
 
             // mượn sách 

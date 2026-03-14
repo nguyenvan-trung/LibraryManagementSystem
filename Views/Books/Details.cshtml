@@ -1,0 +1,205 @@
+﻿@model WebApplication1.Models.Book
+
+@{
+    ViewBag.Title = "Book Details";
+
+    int borrowed = Model.Borrows?.Count ?? 0;
+    int available = Model.Quantity - borrowed;
+}
+
+<style>
+
+    .page {
+        max-width: 1000px;
+        margin: auto;
+        padding: 40px;
+    }
+
+    .book-box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .book-top {
+        display: flex;
+        gap: 30px;
+    }
+
+    .book-image {
+        width: 260px;
+        height: 330px;
+        background: linear-gradient(135deg,#667eea,#764ba2);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        border-radius: 8px;
+    }
+
+    .book-info {
+        flex: 1;
+    }
+
+    .book-title {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .book-author {
+        color: gray;
+        margin-bottom: 15px;
+    }
+
+    .stat {
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .borrow-box {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .input {
+        padding: 8px;
+        margin-top: 10px;
+        width: 200px;
+    }
+
+    .btn {
+        margin-top: 15px;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .borrow-btn {
+        background: #28a745;
+        color: white;
+    }
+
+    .back-btn {
+        background: #4facfe;
+        color: white;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+    }
+</style>
+
+<div class="page">
+
+    <div class="book-box">
+
+        <!-- khu 1 + 2 -->
+
+        <div class="book-top">
+
+            <div class="book-image">
+                Book Cover
+            </div>
+
+            <div class="book-info">
+
+                <div class="book-title">
+                    @Model.Title
+                </div>
+
+                <div class="book-author">
+                    Author: @Model.Author
+                </div>
+
+                <p>
+                    <b>Description:</b><br />
+                    @Model.Description
+                </p>
+
+                <p class="stat">
+                    Borrowed: @borrowed
+                </p>
+
+                <p class="stat">
+                    Available: @available
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- khu 3 -->
+
+        <div class="borrow-box">
+
+            @if (available > 0)
+            {
+
+                <form method="post"
+                      action="@Url.Action("BorrowBook","Books")"
+                      onsubmit="return validateDate()">
+
+                    <input type="hidden" name="bookId" value="@Model.Id" />
+
+                    <label>Return Date</label>
+
+                    <br />
+
+                    <input id="returnDate"
+                           class="input"
+                           type="date"
+                           name="returnDate"
+                           required />
+
+                    <br />
+
+                    <button class="btn borrow-btn" type="submit">
+                        Borrow Book
+                    </button>
+
+                    <a class="back-btn"
+                       href="@Url.Action("Index","Books")">
+                        Back to list
+                    </a>
+
+                </form>
+
+            }
+            else
+            {
+                <p style="color:red;font-weight:bold">
+                    Book not available
+                </p>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    function validateDate() {
+
+        let returnDate =
+            document.getElementById("returnDate").value;
+
+        let today =
+            new Date().toISOString().split("T")[0];
+
+        if (returnDate <= today) {
+
+            alert("Return date must be greater than today!");
+
+            return false;
+
+        }
+
+        return true;
+    }
+
+</script>

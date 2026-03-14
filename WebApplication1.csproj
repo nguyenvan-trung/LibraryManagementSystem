@@ -139,6 +139,10 @@
     <Compile Include="Migrations\202603111443202_Init.Designer.cs">
       <DependentUpon>202603111443202_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202603141457224_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202603141457224_UpdateDatabase.Designer.cs">
+      <DependentUpon>202603141457224_UpdateDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BookConfiguration.cs" />
     <Compile Include="Migrations\BorrowConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -201,6 +205,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -236,6 +242,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202603111443202_Init.resx">
       <DependentUpon>202603111443202_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202603141457224_UpdateDatabase.resx">
+      <DependentUpon>202603141457224_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
