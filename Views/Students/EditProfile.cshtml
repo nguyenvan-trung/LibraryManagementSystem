@@ -1,0 +1,31 @@
+﻿@model WebApplication1.Models.Student
+
+<h2>Edit Profile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <p>Title</p>
+    @Html.TextBoxFor(m => m.Title)
+
+    <p>Name</p>
+    @Html.TextBoxFor(m => m.Name)
+
+    <p>Description</p>
+    @Html.TextBoxFor(m => m.Description)
+
+    <p>Email</p>
+    <input type="text" value="@Model.Email" readonly />
+
+    <p>Password</p>
+    @Html.TextBoxFor(m => m.Password)
+
+    <p>Role</p>
+    <input type="text" value="@(Model.RoleId == 1 ? "Admin" : "User")" readonly />
+
+    <br />
+    <br />
+
+    <button type="submit">Update</button>
+}
