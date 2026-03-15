@@ -1,0 +1,22 @@
+﻿@model WebApplication1.Models.Book
+
+<h2>Add Book</h2>
+
+@using (Html.BeginForm())
+{
+
+    <p>Title</p>
+    @Html.TextBoxFor(m => m.Title)
+
+    <p>Author</p>
+    @Html.TextBoxFor(m => m.Author)
+
+    <p>Quantity</p>
+    @Html.TextBoxFor(m => m.Quantity)
+
+    <br />
+    <br />
+
+    <button type="submit">Save</button>
+
+}

@@ -7,7 +7,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class BorrowsController: Controller
+    public class BorrowsController : Controller
     {
         private readonly LibraryDbContext context = new LibraryDbContext();
         public ActionResult MyBooks()
@@ -24,6 +24,9 @@ namespace WebApplication1.Controllers
             return View(students);
         }
 
-
+        public ActionResult Home()
+        {
+            return View();
+        }
     }
 }

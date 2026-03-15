@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<style>
+
+    body {
+        background: #f4f6f9;
+        font-family: Arial;
+    }
+
+    .container {
+        width: 85%;
+        margin: auto;
+    }
+
+    /* Banner */
+    .banner {
+        background-image: url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da");
+        background-size: cover;
+        background-position: center;
+        height: 250px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-bottom: 30px;
+        margin-top: 40px;
+    }
+
+        .banner h1 {
+            background: rgba(0,0,0,0.5);
+            padding: 15px 30px;
+            border-radius: 8px;
+        }
+
+    /* About section */
+    .about {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Card layout */
+    .card-box {
+        display: flex;
+        gap: 20px;
+    }
+
+    .card {
+        flex: 1;
+        background: white;
+        padding: 25px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3498db;
+        }
+</style>
+
+
+<div class="container">
+
+    <!-- Banner -->
+    <div class="banner">
+        <h1>Library Management System</h1>
+    </div>
+
+    <!-- Introduction -->
+    <div class="about">
+        <h2>Welcome to the Library Management System</h2>
+
+        <p>
+            This system helps administrators manage students, books, and borrowing activities
+            in the library efficiently.
+        </p>
+
+        <p>
+            With this dashboard, you can quickly monitor the number of students,
+            books available in the library, and the total borrowing records.
+        </p>
+    </div>
+
+
+    <!-- Statistics -->
+    <div class="card-box">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <p>@ViewBag.TotalStudents</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Books</h3>
+            <p>@ViewBag.TotalBooks</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Borrow</h3>
+            <p>@ViewBag.TotalBorrows</p>
+        </div>
+
+    </div>
+
+</div>
