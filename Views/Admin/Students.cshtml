@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.Student>
+
+<h2>Students Management</h2>
+
+<table border="1" width="100%">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>@item.RoleId</td>
+
+            <td>
+                <a href="/Admin/EditStudent/@item.Id">Edit</a> |
+                <a href="/Admin/DeleteStudent/@item.Id">Delete</a>
+            </td>
+
+        </tr>
+    }
+
+</table>

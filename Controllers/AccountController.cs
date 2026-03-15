@@ -29,14 +29,7 @@ namespace WebApplication1.Controllers
                 Session["Role"] = user.RoleId;
                 Session["StudentId"] = user.Id;
 
-                // Admin
-                if (user.RoleId == 1)
-                {
-                    return RedirectToAction("Index", "Admin");
-                }
-
-                // Student
-                return RedirectToAction("Index", "Books");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.Error = "Sai email hoặc password";

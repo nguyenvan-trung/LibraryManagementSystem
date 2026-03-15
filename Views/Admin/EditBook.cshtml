@@ -1,0 +1,24 @@
+﻿@model WebApplication1.Models.Book
+
+<h2>Edit Book</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(m => m.Id)
+
+    <p>Title</p>
+    @Html.TextBoxFor(m => m.Title)
+
+    <p>Author</p>
+    @Html.TextBoxFor(m => m.Author)
+
+    <p>Quantity</p>
+    @Html.TextBoxFor(m => m.Quantity)
+
+    <br />
+    <br />
+
+    <button type="submit">Update</button>
+
+}

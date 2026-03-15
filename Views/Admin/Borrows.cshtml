@@ -1,0 +1,105 @@
+﻿@model IEnumerable<WebApplication1.Models.Borrow>
+
+<h2>Borrow List</h2>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        background: #2c3e50;
+        color: white;
+        padding: 10px;
+    }
+
+    td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    tr:hover {
+        background: #f2f2f2;
+    }
+
+    .returned {
+        color: green;
+        font-weight: bold;
+    }
+
+    .borrowing {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .late {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
+<table>
+
+    <tr>
+        <th>Student</th>
+        <th>Book</th>
+        <th>Borrow Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+        <th>Remaining Time</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var days = (item.ReturnDate - DateTime.Now).Days;
+
+        <tr>
+
+            <td>@item.Student.Name</td>
+
+            <td>@item.Book.Title</td>
+
+            <td>@item.BorrowDate.ToShortDateString()</td>
+
+            <td>@item.ReturnDate.ToShortDateString()</td>
+
+            <td>
+                @{
+                    if (item.Status == "Returned")
+                    {
+                        <span class="returned">Returned</span>
+                    }
+                    else if (days >= 0)
+                    {
+                        <span class="borrowing">Borrowing</span>
+                    }
+                    else
+                    {
+                        <span class="late">Not Returned</span>
+                    }
+                }
+            </td>
+
+            <td>
+                @{
+                    if (item.Status == "Returned")
+                    {
+                        <span class="returned">Completed</span>
+                    }
+                    else if (days >= 0)
+                    {
+                        <span class="borrowing">@days days left</span>
+                    }
+                    else
+                    {
+                        <span class="late">Late @Math.Abs(days) days</span>
+                    }
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>
