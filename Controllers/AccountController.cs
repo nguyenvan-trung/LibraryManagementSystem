@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class AccountController: Controller
+    public class AccountController : Controller
     {
         private readonly LibraryDbContext db = new LibraryDbContext();
 
@@ -26,14 +24,18 @@ namespace WebApplication1.Controllers
 
             if (user != null)
             {
+                // Lưu Session
                 Session["User"] = user.Email;
                 Session["Role"] = user.RoleId;
+                Session["StudentId"] = user.Id;
 
-                if (user.RoleId == 1)   
+                // Admin
+                if (user.RoleId == 1)
                 {
                     return RedirectToAction("Index", "Admin");
                 }
 
+                // Student
                 return RedirectToAction("Index", "Books");
             }
 
@@ -53,7 +55,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.RoleId = 2; 
+                user.RoleId = 2;
 
                 db.Students.Add(user);
                 db.SaveChanges();

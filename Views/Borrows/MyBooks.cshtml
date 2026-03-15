@@ -1,0 +1,143 @@
+﻿@model IEnumerable<WebApplication1.Models.Borrow>
+
+@{
+    ViewBag.Title = "My Books";
+}
+
+<style>
+    body {
+        font-family: Arial;
+        background-color: #f4f6f9;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    th {
+        background-color: #2c3e50;
+        color: white;
+        padding: 12px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .status-borrowing {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .status-returned {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-overdue {
+        color: red;
+        font-weight: bold;
+    }
+
+    .remain {
+        color: #2980b9;
+        font-weight: bold;
+    }
+
+    .expired {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+
+    <h2>📚 My Borrowed Books</h2>
+
+    <table>
+        <tr>
+            <th>Book Name</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+            <th>Status</th>
+            <th>Remaining Time</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var today = DateTime.Now;
+
+            <tr>
+
+                <td>@item.Book.Title</td>
+
+                <td>@item.BorrowDate.ToShortDateString()</td>
+
+                <td>@item.ReturnDate.ToShortDateString()</td>
+
+                <td>
+
+                    @if (item.Status == "Returned")
+                    {
+                        <span class="status-returned">Returned</span>
+                    }
+                    else
+                    {
+                        if (item.ReturnDate < today)
+                        {
+                            <span class="status-overdue">Overdue</span>
+                        }
+                        else
+                        {
+                            <span class="status-borrowing">Borrowing</span>
+                        }
+                    }
+
+                </td>
+
+                <td>
+
+                    @if (item.Status == "Returned")
+                    {
+                        <span>0 day</span>
+                    }
+                    else
+                    {
+                        var days = (item.ReturnDate - today).Days;
+
+                        if (days > 0)
+                        {
+                            <span class="remain">@days day</span>
+                        }
+                        else
+                        {
+                            <span class="expired">Expired</span>
+                        }
+                    }
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>
